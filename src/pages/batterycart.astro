@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Cart from "../components/cart/Cart.astro";
+import Carousel from "../components/Carousel";
 ---
 
 <Layout title="Battery Cart | Vaughn Khouri">
@@ -31,26 +32,14 @@ import Cart from "../components/cart/Cart.astro";
       Gallery
     </h3>
 
-    <div id="image-gallery" class="gallery">
-      <button id="prev-button" class="gallery-nav-button" aria-label="Previous Image">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
-        </svg>
-      </button>
-
-      <img
-        id="gallery-image"
-        src="./src/assets/cart/img_1.png"
-        alt="Gallery Image"
-        class="gallery-image"
-      />
-
-      <button id="next-button" class="gallery-nav-button" aria-label="Next Image">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-        </svg>
-      </button>
-    </div>
+    <Carousel client:load images={[
+      './src/assets/cart/img_1.png',
+    './src/assets/cart/img_2.png',
+    './src/assets/cart/img_3.png',
+    './src/assets/cart/img_4.jpg',
+    './src/assets/cart/img_5.jpg',
+    './src/assets/cart/img_6.jpg',
+    ]} />
 
     <p class="text-white">
       <br />
@@ -116,48 +105,3 @@ import Cart from "../components/cart/Cart.astro";
     right: 3rem;
   }
 </style>
-
-<script>
-  // List of gallery images
-  const images = [
-    './src/assets/cart/img_1.png',
-    './src/assets/cart/img_2.png',
-    './src/assets/cart/img_3.png',
-    './src/assets/cart/img_4.jpg',
-    './src/assets/cart/img_5.jpg',
-    './src/assets/cart/img_6.jpg',
-  ];
-
-  let currentIndex = 0;
-
-  const galleryImage = document.getElementById('gallery-image');
-  const prevButton = document.getElementById('prev-button');
-  const nextButton = document.getElementById('next-button');
-
-  // Preload all images
-  images.forEach((src) => new Image().src = src);
-
-  function updateImage() {
-    galleryImage.style.opacity = 0;
-
-    galleryImage.addEventListener(
-      'transitionend',
-      () => {
-        galleryImage.src = images[currentIndex];
-        galleryImage.style.opacity = 1;
-      },
-      { once: true }
-    );
-  }
-
-  // Event listeners for navigation buttons
-  prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  });
-
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-</script>

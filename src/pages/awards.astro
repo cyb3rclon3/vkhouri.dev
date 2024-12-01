@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Awards from "../components/awards/Awards.astro";
 import Award_internals from "../components/awards/Award_internals.astro";
+import Carousel from "../components/Carousel";
 ---
 
 <Layout title="Illuminating Awards | Vaughn Khouri">
@@ -43,26 +44,14 @@ import Award_internals from "../components/awards/Award_internals.astro";
       Gallery
     </h3>
 
-    <div id="image-gallery" class="gallery">
-      <button id="prev-button" class="gallery-nav-button" aria-label="Previous Image">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
-        </svg>
-      </button>
-
-      <img
-        id="gallery-image"
-        src="./src/assets/awards/slide_1.jpeg"
-        alt="Gallery Image"
-        class="gallery-image"
-      />
-
-      <button id="next-button" class="gallery-nav-button" aria-label="Next Image">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-        </svg>
-      </button>
-    </div>
+    <Carousel client:load images={[
+      './src/assets/awards/slide_1.jpeg',
+      './src/assets/awards/slide_2.png',
+      './src/assets/awards/slide_3.jpg',
+      './src/assets/awards/slide_5.jpeg',
+      './src/assets/awards/slide_6.jpeg',
+      './src/assets/awards/slide_7.jpg',
+    ]} />
 
     <p class="text-white">
       <br />
@@ -130,53 +119,3 @@ import Award_internals from "../components/awards/Award_internals.astro";
     fill: #000;
   }
 </style>
-
-<script>
-  const images = [
-    './src/assets/awards/slide_1.jpeg',
-    './src/assets/awards/slide_2.png',
-    './src/assets/awards/slide_3.jpg',
-    './src/assets/awards/slide_5.jpeg',
-    './src/assets/awards/slide_6.jpeg',
-    './src/assets/awards/slide_7.jpg',
-  ];
-
-  let currentIndex = 0;
-
-  const galleryImage = document.getElementById('gallery-image');
-  const prevButton = document.getElementById('prev-button');
-  const nextButton = document.getElementById('next-button');
-
-  // Preload all images
-  function preloadImages() {
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }
-
-  function updateImage() {
-    galleryImage.style.opacity = 0;
-
-    galleryImage.addEventListener(
-      'transitionend',
-      () => {
-        galleryImage.src = images[currentIndex];
-        galleryImage.style.opacity = 1;
-      },
-      { once: true }
-    );
-  }
-
-  prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  });
-
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-
-  preloadImages();
-</script>
