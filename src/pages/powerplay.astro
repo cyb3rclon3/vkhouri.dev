@@ -9,6 +9,9 @@ import Powerplay_ratchet from "../components/powerplay/Powerplay_ratchet.astro";
 import Powerplay_chain from "../components/powerplay/Powerplay_chain.astro";
 import Powerplay_2 from "../components/powerplay/Powerplay_2.astro";
 import Powerplay_frame from "../components/powerplay/Powerplay_frame.astro";
+
+import powerplayce from "../assets/powerplay/powerplayece.png";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="PowerPlay | Vaughn Khouri">
@@ -103,8 +106,8 @@ import Powerplay_frame from "../components/powerplay/Powerplay_frame.astro";
     </p>
 
     <div class="image-text-container">
-      <img
-        src='../src/assets/powerplay/powerplayece.png'
+      <Image
+        src={powerplayce}
         alt="Powerplay electrical diagram"
         class="side-image"
       />
