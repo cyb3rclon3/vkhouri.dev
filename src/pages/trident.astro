@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import Trident from "../components/trident/Trident.astro";
+import Tridentpack from "../components/trident/Tridentpack.astro";
+import Trident_connor from "../components/trident/Trident_connor.astro";
+---
+
+<Layout title="Poseiden's Trident | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+      Interactive Costumes<br />
+      <span class="text-gradient">Poseiden's Trident</span>
+    </h1>
+
+    <Trident />
+
+    <p class="lead text-white">
+      <i>A handheld trident that can fire mist from the tip</i>
+    </p>
+    <br />
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Summary
+    </h2>
+
+    <p class="text-white">
+      This costume is the third I built for my brother in what has become something of a yearly tradition. Using a backpack-mounted, battery-powered air compressor, solenoid valve, and water tank, it can fire a light mist from the end of a modified trident prop. Since the mist is mostly air, the relatively small tank of water lasts several hours.
+    </p>
+    <br/>
+    <video class="border border-black" autoplay muted loop playsinline>
+      <source src="https://utfs.io/f/R4XuC0BXcUqQjyyJCs22pbOBQ7R9lD8uZWxCcMqLsUftNTnh" type="video/mp4" />
+    </video>
+
+    <p class="text-white">
+      <br />The backpack houses a modified Sodastream bottle, which acts as the tank. This costume was built on top of the <a href="claws" target="_blank" class="underline inline">Wolverine's Claws</a> costume I built the year before, which already included the air compressor, air tank, battery, and solenoid valve. When the wearer presses a switch, a solenoid valve forces air pressure into the top inlet of the tank, which forces water out the bottom.
+    </p>
+    <br/>
+    <Tridentpack />
+
+    <p class="text-white">
+      <br />Before the water can reach the end of the trident, which was modified with a small hole in the end, it is mixed with air via a Y splitter. There's a hand-adjustable flowrate valve on both the liquid and air sides of this Y splitter, which allows the "consistency" of the mist to be tuned.
+      <br /><br />
+      Like in the Wolverine costume, the compressor was powered by a LiFePo4 battery and triggered by a pressure sensor. The tank is used to store pressure for long-duration spraying, and the system pressure is tunable with a regulator.
+    </p>
+    </br>
+    <Trident_connor />
+
+    <p class="text-white">
+      <br />The full costume was a weekend build and a great iteration from the Wolverine Claws costume. While the final product wasn't as polished as many of my other projects, it ended up being a ton of fun.
+    </p>
+
+    <BackButton />
+  </div>
+</Layout>

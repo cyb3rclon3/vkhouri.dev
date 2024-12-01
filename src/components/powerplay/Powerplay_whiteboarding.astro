@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import powerplay_whiteboarding from '../../assets/powerplay/powerplay_whiteboarding.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={powerplay_whiteboarding}
+    alt="Image of whiteboard with math and drawings"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

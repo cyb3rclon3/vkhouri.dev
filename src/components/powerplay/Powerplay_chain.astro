@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import powerplay_chain from '../../assets/powerplay/powerplay_chains.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={powerplay_chain}
+    alt="Closeup image showing chain connected to motors on see saw"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

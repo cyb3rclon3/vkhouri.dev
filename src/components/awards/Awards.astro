@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import awards from '../../assets/awards/awards.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={awards}
+    alt="Image of glowing acrylic awards featuring 'Banshee' and team member names."
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

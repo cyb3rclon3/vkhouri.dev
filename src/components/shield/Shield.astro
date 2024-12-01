@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import shield from '../../assets/shield/shield.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={shield}
+    alt="Image of wrist-mounted electromagnet and battery pack on table"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

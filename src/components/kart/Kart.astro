@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import kart from '../../assets/kart/kart.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={kart}
+    alt="Image of blue Go-Kart in front of a city skyline"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

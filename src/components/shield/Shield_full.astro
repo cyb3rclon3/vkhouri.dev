@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import shield_full from '../../assets/shield/full.jpeg';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={shield_full}
+    alt="Image of wrist-mounted electromagnet and battery pack on table"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import powerplay_2 from '../../assets/powerplay/powerplay_2.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={powerplay_2}
+    alt="Image of see saw with red lights"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

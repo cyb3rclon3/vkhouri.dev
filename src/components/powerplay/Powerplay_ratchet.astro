@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import powerplay_ratchet from '../../assets/powerplay/powerplay_ratchet.png';
+import powerplay_ratchet_2 from '../../assets/powerplay/powerplay_ratchet_2.png';
+---
+
+<div class="image-container">
+  <Image
+    class="project-image border border-black"
+    src={powerplay_ratchet}
+    alt="Image of CAD model of gears"
+    densities={[1, 2, 3]} 
+  />
+  <Image
+    class="project-image border border-black"
+    src={powerplay_ratchet_2}
+    alt="Image of CAD model of see saw"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .image-container {
+    display: flex;
+    gap: 16px; /* Adjust the gap between images if needed */
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 50%; /* Adjust as needed to control individual image size */
+    height: auto;
+  }
+</style>

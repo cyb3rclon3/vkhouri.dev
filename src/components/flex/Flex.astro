@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import flex from '../../assets/flex/flex.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={flex}
+    alt="Image of device attached to wall with strap hanging out."
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

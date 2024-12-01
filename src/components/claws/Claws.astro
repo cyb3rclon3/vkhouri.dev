@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import claws from '../../assets/claws/claws.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={claws}
+    alt="Image of a child wearing a lab coat with silver claws on wrists."
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

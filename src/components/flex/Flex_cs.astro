@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import flex_cs from '../../assets/flex/flex_cs.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={flex_cs}
+    alt="Image of CAD model showing cross section of flex"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

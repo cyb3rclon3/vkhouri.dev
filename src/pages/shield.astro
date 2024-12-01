@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import Shield from "../components/shield/Shield.astro";
+import Shield_internals from "../components/shield/Shield_internals.astro";
+import Shield_full from "../components/shield/Shield_full.astro";
+---
+
+<Layout title="Captain America's Shield | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+      Interactive Costumes<br />
+      <span class="text-gradient">Captain America's Shield</span>
+    </h1>
+
+    <Shield />
+
+    <p class="lead text-white">
+      <i>Power pack and arm-mounted electromagnet that can catch Captain America's shield</i>
+    </p>
+    <br />
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Summary
+    </h2>
+
+    <p class="text-white">
+      This costume is the fourth I built for my brother in what has become something of a yearly tradition. Using a wrist-mounted electromagnet and a shield with an 18ga steel plate attached to the inside, it enables the wearer to catch the shield if someone throws it at them, and also throw it if they time it just right. Ever since I saw the original Hacksmith video, I wanted to build my own. With this costume, I improved on theirs in a couple of areas, making it practical enough for my brother to trick-or-treat with.
+    </p>
+    <br/>
+    <video class="border border-black" autoplay muted loop playsinline>
+      <source src="https://utfs.io/f/R4XuC0BXcUqQneATIOoFYBz0CfShTiVlkLr5mQZDGtus23N9" type="video/mp4" />
+    </video>
+    
+    <p class="text-white">
+      <br />The real challenge here is managing heat on the electromagnet, and effectively hiding the powerpack. To solve the first problem, I put a two-way rocking switch on the grip. The neutral position of the switch sends 12v to the electromagnet, which is just enough to hold the shield without it getting too hot. <br /><br />
+      
+      By pressing it to one side, the voltage is doubled (an additional 12v battery is connected in series), which acts as an "overdrive" mode that makes catching the shield much easier. That also adds a fun timing element to the costume! As you might expect, pressing the switch the other way disables the electromagnet, dropping the shield instantly.
+    </p>
+    <br/>
+    <Shield_internals />
+    
+    <p class="text-white">
+      <br />This behavior is actually completely analog and uses a simple circuit with two 14-pin relays I found in a bin of electronics probably bought at a yard sale years back. As the electromagnet was enabled in the neutral position of the switch, the powerpack had to get its own on/off switch for storage. I hid the powerpack in a small backpack and crimped connectors onto each side of the tether so that it could be disconnected and fed through the sleeve of the wearer, which does a great job of hiding it. 
+    </p>
+    <br/>
+    <Shield_full />
+    
+    <p class="text-white">
+      <br />The full costume was a one-day build and, aside from the electromagnet, was basically thrown together from everything I could find in my garage — even the Dewalt cordless tool batteries that powered the whole costume. The best kind of project, if you ask me.
+    </p>
+    
+    <BackButton />
+  </div>
+</Layout>

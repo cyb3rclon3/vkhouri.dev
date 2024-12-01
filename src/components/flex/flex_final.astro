@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import flex_final from '../../assets/flex/flex_final.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={flex_final}
+    alt="Image of final Flex product"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

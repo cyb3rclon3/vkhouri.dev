@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import trident from '../../assets/trident/trident.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={trident}
+    alt="Image of trident spraying water"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+</style>

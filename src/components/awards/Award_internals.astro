@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import cad from '../../assets/awards/awardcad.png';
+import internal from '../../assets/awards/awardinternals.png';
+---
+
+<div class="image-container">
+  <Image
+    class="project-image border border-black"
+    src={cad}
+    alt="Image of CAD model of gears"
+    densities={[1, 2, 3]} 
+  />
+  <Image
+    class="project-image border border-black"
+    src={internal}
+    alt="Image of CAD model of see saw"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .image-container {
+    display: flex;
+    gap: 16px; /* Adjust the gap between images if needed */
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 50%; /* Adjust as needed to control individual image size */
+    height: auto;
+  }
+</style>

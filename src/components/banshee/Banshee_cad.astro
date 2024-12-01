@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import finalcad from '../../assets/banshee/finalcad.png';
+import crayola from '../../assets/banshee/crayola.png';
+import mastersketch from '../../assets/banshee/mastersketch.png';
+---
+
+<div class="image-container">
+  <Image
+    class="project-image border border-black"
+    src={mastersketch}
+    alt="Side profile sketch of robot"
+    densities={[1, 2, 3]} 
+  />
+  <Image
+    class="project-image border border-black"
+    src={crayola}
+    alt="Block CAD of robot"
+    densities={[1, 2, 3]} 
+  />
+  <Image
+    class="project-image border border-black"
+    src={finalcad}
+    alt="CAD model of robot"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .image-container {
+    display: flex;
+    gap: 16px; /* Adjust the gap between images if needed */
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 33%; /* Adjust as needed to control individual image size */
+    height: auto;
+  }
+</style>

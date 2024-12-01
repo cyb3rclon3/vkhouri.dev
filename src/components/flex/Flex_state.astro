@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import flex_state from '../../assets/flex/flex_statemachine.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={flex_state}
+    alt="Image of Flex IOS appx"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import Banshee from "../components/banshee/Banshee.astro";
+import Banshee_cad from "../components/banshee/Banshee_cad.astro";
+---
+
+<Layout title="Banshee | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+      FIRST<br />
+      <span class="text-gradient">Banshee</span>
+    </h1>
+
+    <Banshee />
+
+    <p class="lead text-white">
+      <i>Banshee is 8033's robot for the 2024 FIRST Robotics Competition, Crescendo.</i>
+    </p>
+
+    <br />
+
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Summary
+    </h2>
+
+    <p class="text-white">
+      Banshee is the third robot I worked on during my time on FRC 8033, Highlander Robotics. I led its design as team captain. This included integration and fine details, but also our overall workflow including prototyping, game strategy, and integration.<br /><br />
+
+      This robot was designed around simplicity and robustness, playing into the design standards I created to make learning CAD easier for new members on 8033. For example, the whole robot only uses 4 different stock types (1/8 aluminum, 1/4 aluminum, 1/4 polycarbonate, and 1/4 HDPE). It was also designed using a top-down approach where the overarching dimensions were driven by a master sketch, helping to take the guesswork out of designing multiple subsystems in parallel.<br /><br />
+
+      Banshee was designed in Onshape and built in around 5 weeks by our team. It placed #9 in California by Expected Points Added, an advanced metric, and finished in the top 16 worldwide at the FIRST Championship (where I also drove it) as a division finalist alliance captain.
+    </p>
+    <br/>
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Design Conceptualization
+    </h3>
+
+    <p class="text-white">
+      Our design process starts with laser-cut prototypes, transitioning into a side-profile "master sketch" and then low-detail block CAD, which informed the design of the final subsystems.
+    </p>
+    <br/>
+    <video
+      class="border border-black"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="https://utfs.io/f/R4XuC0BXcUqQc3s0P1QSKNlDpjkd5IfAF08oRuvt1WrLxVz3" type="video/mp4" />
+    </video>
+
+    <br />
+
+    <Banshee_cad />
+
+    <p class="text-white">
+      <br />
+      For more information on our prototyping process, or the design of Banshee's subsystems, check out 
+      <a href="https://drive.google.com/drive/folders/190_-Hvrnv-FCfmHxnsWsosPrNMHAlZd4" target="_blank" class="underline inline">
+        my presentation at the Western Region Robotics Forum
+      </a>
+      or my 
+      <a href="https://www.chiefdelphi.com/t/8033-public-cad-release-2024/469484" target="_blank" class="underline inline">
+        technical writeup on Banshee's design
+      </a>.
+      <br /><br />
+      Additionally, if you are interested in other FRC-related design work, check out my technical binders for the two CADathon competitions I won: 
+      <a href="https://docs.google.com/document/d/1NWPqIlKru55cYiTqR7oexpBmehZZDWZMny1_LcYR1uQ/edit?tab=t.0" target="_blank" class="underline inline">
+        DDS Winter CADathon 2023
+      </a>
+      and 
+      <a href="https://docs.google.com/document/d/1mjGhXQ5QMQAcIJeAKBmeG6eK2-oeoVftNuwgpiOkOQQ/edit?tab=t.0" target="_blank" class="underline inline">
+        WCP CADathon 2024
+      </a>.
+    </p>
+
+    <BackButton />
+  </div>
+</Layout>
+
+<style>
+  .image-text-container {
+    display: flex;
+    align-items: top;
+    gap: 16px; /* Adjust space between image and text */
+    margin-bottom: 2rem; /* Adds spacing before the back button */
+  }
+
+  .side-image {
+    flex: 1 1 auto; /* Ensures the image takes only as much space as needed */
+    max-width: 400px; /* Adjust as necessary for your design */
+    height: auto;
+  }
+
+  .side-text {
+    flex: 2 1 auto; /* Gives the text more space */
+    font-size: 1.15rem;
+    color: #ccc;
+  }
+</style>

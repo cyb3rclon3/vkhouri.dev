@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import Powerplay from "../components/powerplay/Powerplay.astro";
+import Powerplay_UI from "../components/powerplay/Powerplay_UI.astro";
+import Powerplay_whiteboarding from "../components/powerplay/Powerplay_whiteboarding.astro";
+import Powerplay_cad from "../components/powerplay/Powerplay_cad.astro";
+import Powerplay_ratchet from "../components/powerplay/Powerplay_ratchet.astro";
+import Powerplay_chain from "../components/powerplay/Powerplay_chain.astro";
+import Powerplay_2 from "../components/powerplay/Powerplay_2.astro";
+import Powerplay_frame from "../components/powerplay/Powerplay_frame.astro";
+---
+
+<Layout title="PowerPlay | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+      Functional Product Concepts<br />
+      <span class="text-gradient">PowerPlay</span>
+    </h1>
+
+    <Powerplay />
+
+    <p class="lead text-white">
+      <i>Completed PowerPlay prototype, running on internal super capacitor bank</i>
+    </p>
+    <br />
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Summary
+    </h2>
+
+    <p class="text-white">
+      PowerPlay is a see-saw that generates electricity, lights up, and connects to a cloud backend and social app. I worked with four amazing team members to build PowerPlay at a 6-week summer program in 2023, where we were challenged to build a product related to social sustainability. <br /><br />
+      PowerPlay was designed to address declining attendance of kids at parks and public spaces in a day where digital distractions are readily available to younger and younger children. It aimed to flip the problem on its head by allowing kids to download an app, compete with friends on a leaderboard, earn day streaks, and make friends with a mascot — all by generating power at their local playground.
+    </p>
+
+    <Powerplay_UI />
+    <p class="text-white">
+      <br />
+      It sounds like a crazy idea because it was. Even so, we carried the project as far as we could — and ended up with a novel solution that impressed the board of executives in our final presentation. Perhaps PowerPlay's greatest strength was the statement it made by flipping the "screen time problem," one that people often ignore as "just the way it is these days," on its head, and going out there with a really bold solution with the potential to spark real change. Working on it raised more "what if we-" questions than anything else I've built — many of which I'm still thinking about. <br /><br />
+      I was responsible for PowerPlay's hardware and electronics. The frame was constructed from redwood lumber, and the electronics stacked around an Arduino MKR WiFi 1010, able to communicate with our backend and read data from a wattmeter on board.
+    </p>
+    <br/>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Hardware
+    </h2>
+    <p class="mb-6 text-gray-300 md:text-lg">
+      We actually weren't entirely sure whether PowerPlay would be a see-saw. We considered many different play structure elements, including swings, which showed serious promise. After much whiteboarding and napkin math, we settled on the see-saw because we thought it would be something we could build in a conference room — the only space we had.
+    </p>
+
+    <Powerplay_whiteboarding />
+    <p class="mb-6 text-gray-300 md:text-lg">
+      <i>Early math and ideas for PowerPlay UX and hardware</i>
+      <br /><br />
+      Yep, that's right. We only had a conference room and a parking lot to build this thing. Where did we get the tools, you ask? Well, Home Depot of course. There was one only ten minutes away! How long did we have to build it? Less than 4 weeks. <br /><br />
+      In any case, I knew that the only way PowerPlay could be built was by spending the extra time upfront in the design and architecting process to ensure our prototype would go together on the first try. Like many of my other projects, I placed the emphasis on simplicity and part count when designing PowerPlay and its electronics. This emphasis was probably the only thing that got our prototype out the door on time.
+    </p>
+
+    <Powerplay_cad />
+    <p class="mb-6 text-gray-300 md:text-lg">
+      At its core, PowerPlay's final design consists of a wooden frame, assembled with glue and deck screws, combined with some waterjet-cut aluminum elements, brushless motors, planetary gearboxes, and some chains to transmit torque. In the final design, the two brushless motors are wired into three-phase rectifiers in series, which generates about 35W of 12v DC power at full tilt. That also puts an incredible amount of torque through the system, which made designing for simplicity even more difficult. <br /><br />
+      Early on, I considered a somewhat complex double ratcheting mechanism that would turn the back-and-forth motion of the see-saw into continuous rotation that could spin up a flywheel.
+    </p>
+
+    <Powerplay_ratchet />
+    <p class="mb-6 text-gray-300 md:text-lg">
+      <i>Early prototype CAD, ratcheting gears would turn all rotation clockwise</i>
+      <br /><br />
+      This system, while really cool, was a mechanical solution to what was really an electronics problem. By simply allowing the motor to spin back and forth, it would still create DC power with a consistent polarity on the inside of the 3-phase rectifiers. The problem, of course, was the huge fluctuations in voltage that would surely damage any traditional power filtering hardware. <br /><br />
+      The solution to this was a super capacitor bank, which acted as a highly tolerant battery, creating a consistent voltage output that could then be filtered with a standard buck/boost converter to power the other onboard electronics.
+    </p>
+
+    <Powerplay_chain />
+    <p class="mb-6 text-gray-300 md:text-lg">
+      <br />
+      The result is a very simple setup with two chains, two motors, and some planetary gearboxes. As the motor spins back and forth, charging the super capacitor bank, you can even see the voltage increasing on a side-mounted analog volt meter — an added bonus.
+    </p>
+
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Building The Frame
+    </h3>
+    <p class="mb-6 text-gray-300 md:text-lg">
+      The frame sure looked simple in CAD, but building it in real life from very imperfect Home Depot lumber was not as straightforward. Did you know that 2 by 4 lumber is, in fact, 1.5 by 3.5? Ask me how I know. <br /><br />
+      Construction started by cutting all of the pieces from the wood beams, which we did on a miter saw set up in a parking lot. Then, the bottom half of the frame was glued up, clamped, and screwed with 3 and 4 inch long deck screws. The aluminum plates, which hold the bearings for the pivot shaft, were then dry fitted to do an integrated test. The result was a ridable see-saw — and we didn't hesitate to have some fun with it.
+    </p>
+
+    <Powerplay_frame/>
+    <p class="mb-6 text-gray-300 md:text-lg">
+      <br />
+      The next step was to take off all the electronics so we could paint the frame. Next, we installed all of the electronics and LEDs. There were some long nights, but we ended up with a really good looking base. The top crossbar was disassembled so it could be stained black and then reassembled with the seats, which were finished with polyurethane. Handles were added as a somewhat last-minute addition using parts from, you guessed it, Home Depot.
+    </p>
+
+    <Powerplay_2 />
+    <p class="mb-6 text-gray-300 md:text-lg">
+      <br />
+      The actual construction of PowerPlay only took around three days and went pretty smoothly, all things considered. The result was a futuristic take on a classic see-saw design that we were all proud of.
+    </p>
+
+    <h4 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl dark:text-white">
+      Electronics
+    </h4>
+    <p class="mb-6 text-gray-300 md:text-lg">
+      While I didn't write the firmware for PowerPlay, I was responsible for the electronics architecture. It was important that PowerPlay could connect to our cloud backend via WiFi, light up LEDs, and of course, log how much power had been generated. We wanted the unit to be self-contained, which meant everything had to run off of the generated power. <br /><br />
+    </p>
+
+    <div class="image-text-container">
+      <img
+        src='../src/assets/powerplay/powerplayece.png'
+        alt="Powerplay electrical diagram"
+        class="side-image"
+      />
+      <p class="side-text">
+        PowerPlay's final electrical layout looked like this. An Arduino MKR WiFi 1010 is powered off a 5v buck converter. It communicates with a wattmeter via I2C, which tells the firmware how much power is being generated. That buck converter also powers the LED strips. <br /><br />
+        The super capacitor bank is placed between the two 3-phase rectifiers and the buck/boost, which keeps the bus voltage stable. <br /><br />
+        A 5A breaker was added to avoid any damage to the system.
+      </p>
+    </div>
+
+    <p class="mb-6 text-gray-300 md:text-lg">
+      Was it a crazy idea? Yeah. Was it an awesome project? Also yeah! The combination of carpentry, mechanical engineering, and electronics made it really unique. I learned so much while building PowerPlay, and it's a summer I will never forget.
+    </p>
+
+    <BackButton />
+  </div>
+</Layout>
+
+<style>
+  .image-text-container {
+    display: flex;
+    align-items: top; /* Centers content vertically */
+    gap: 16px; /* Adjust space between image and text */
+    margin-bottom: 2rem; /* Adds spacing before the back button */
+  }
+
+  .side-image {
+    flex: 1 1 auto; /* Ensures the image takes only as much space as needed */
+    max-width: 400px; /* Adjust as necessary for your design */
+    height: auto;
+  }
+
+  .side-text {
+    flex: 2 1 auto; /* Gives the text more space */
+    font-size: 1.15rem;
+    color: #ccc;
+  }
+</style>

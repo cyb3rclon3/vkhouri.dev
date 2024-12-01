@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import cart from '../../assets/cart/cart.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={cart}
+    alt="Image of black cart up against wall holding 8 batteries"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import powerplay_cad from '../../assets/powerplay/powerplay_cad.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={powerplay_cad}
+    alt="Image of CAD model of see saw"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>
