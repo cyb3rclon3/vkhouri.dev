@@ -3,7 +3,7 @@ import { cn } from "./util";
 
 const IconButton = ({ onClick, children }: { onClick: () => void, children: React.ReactNode }) => {
   return (
-    <button onClick={onClick} className="el flex items-center justify-center aspect-square shadow-xl hover:bg-white/70 bg-white duration-300 group transition-all h-12 w-12">
+    <button onClick={onClick} className="font-medium text-sm p-2.5 industry font-medium text-center fill-white bg-white-700 hover:bg-white-800 focus:ring-4 focus:outline-none focus:ring-white-300 dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800 bg-zinc-800">
       {children}
     </button>
   );
