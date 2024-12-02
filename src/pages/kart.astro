@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Kart from "../components/kart/Kart.astro";
+import Carousel from "../components/Carousel";
+import KartComparison from "../components/kart/Kart_comparison.astro";
 ---
 
 <Layout title="Go Kart | Vaughn Khouri">
@@ -12,9 +14,45 @@ import Kart from "../components/kart/Kart.astro";
     <Kart/>
     <p class="text-white">
       <i>A garage-built go kart with a MIG welded frame and modifed Harbor Freight 212cc engine</i><br/>
-    </br>
-    TODO
     </p>
+    </br>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Summary
+    </h2>
+    <p class="text-white">
+    I built this Go kart from scratch in my garage, as my first major steel fabrication project. Interestingly enough, this wasn't actually my first Go Kart. One of the first ever projects I did with my dad was restoring a small Go Kart bought off EBay. Good times, but I eventually outgrew it.
+    </p>
+    <br/>
+    <KartComparison/>
+    <p class="text-white">
+      <i>Original versus v2 karts</i>
+      <br/><br/>
+      The frame was MIG welded from 12ga mild steel box tube, cut on a miter saw and mostly welded with plywood fixturing. There were also some hand cut plate steel elements and some off-the-shelf parts, like the tires, pedals, steering wheel and seat. A large disk brake was added in the back and the throttle pedal was connected with a cable. 
+      <br/><br/>
+      The engine is a 212cc Predator from Harbor Freight. You can buy one of these for $99.99, which is completely unbelievable and actually inspired the whole project. I modified this with an aftermarket exaust and a larger carb jet for extra preformance (and sound!), and I also wired in an external killswitch so that it would be located right under the steering wheel. The back axle is rigid (if anyone knows where to get a differential for under $5000, let me know) and power transmission uses a large chain with a CVT. To tension it, the while engine moves on slots!
+      <br/><br/>
+      </p>
+      <video class="border border-black" autoplay muted loop playsinline>
+        <source src="https://utfs.io/f/R4XuC0BXcUqQ9xcMXxXZw2jBPgMAIZEk7R0WHzqdQ81JT4CY" type="video/mp4"/>
+      </video>
+      <br/>
+      <p class="text-white">
+      After putting it together for the first time, I dismantled everything and had the frame powdercoated locally in electric blue. That completely transformed it and made it look almost store bought. I eventually added some off-the-shelf racing seatbelts, bolted to the frame on the back of the seat. Today, I often take the kart out with friends to Alameda, where it can hit speeds up to 45 MPH. 
+      </p>
+      <br/>
+      <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+        Gallery
+      </h3>
+    <Carousel client:load images={[
+      '/assets/images/kart/img_1.jpg',
+    '/assets/images/kart/img_2.jpg',
+    '/assets/images/kart/img_3.jpg',
+    '/assets/images/kart/img_4.jpg',
+    '/assets/images/kart/img_5.jpg',
+    '/assets/images/kart/img_6.jpg',
+    '/assets/images/kart/img_7.jpg',
+    ]} />
+    <br/>
     <BackButton />
   </div>
 </Layout>

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Claws from "../components/claws/Claws.astro";
+import Clawspack from "../components/claws/Clawspack.astro";
 ---
 
 <Layout title="Wolverine's Claws | Vaughn Khouri">
@@ -19,8 +20,29 @@ import Claws from "../components/claws/Claws.astro";
         >3D printed claws that mount to the wearers wrist and retract with
         10-inch stroke pneumatic pistons</i
       ><br /><br />
-      TODO
     </p>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Summary
+    </h2>
+    <p class="text-white">
+      This costume is the first I built for my brother for our yearly tradition. Though I'd built several costumes for myself and for him in previous years, I wanted to make something more complex and unique for 2022. The result is a scratch-built backpack with an internal air compressor, LiFePo4 battery, pressure transducer, tank, regulator, and solenoid valve, that retract and extend 10-inch-long claws at the press of a switch.
+    </p>
+  </br>
+    <Clawspack/>
+    <p class="text-white">
+      <i>Final power pack for claws, this goes inside a large backpack</i>
+      <br/><br/>
+    The claws themselves were mostly 3D printed, and designed in Onshape. They mounted the pistons at one point and then had a grip strap pinned with some simple captive nuts. The switch ran seperately but was also fed through the sleeve of the wearer alongside the pneumatic tubes, hiding it away.
+  </p>
+  <br/>
+  <video class="border border-black" autoplay muted loop playsinline>
+  <source src="https://utfs.io/f/R4XuC0BXcUqQfgaRxLd2Vsc4pXdSjLbP3o1ZtKaiWJwOI56U" type="video/mp4"/>
+  </video>
+
+  <p class="text-white">
+    <br/>
+  When combined with some other costume elements, the claws make for a fun effect. The battery powered compressor-tank backpack also proved to be useful for many future projects, including the <a href="trident" target="_blank" class="underline inline">Poseiden's trident</a> prop I made the following year. 
+</p>
   <BackButton />
 </div>
 </Layout>

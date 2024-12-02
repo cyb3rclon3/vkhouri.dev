@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import kartcomparison from '../../assets/kart/comparison.jpg';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={kartcomparison}
+    alt="Image of blue Go-Kart in front of a city skyline"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

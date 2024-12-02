@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import clawspack from '../../assets/claws/clawspack.jpeg';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={clawspack}
+    alt="Wood frame with air compressor, tank, and pneumatic tubing"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>
