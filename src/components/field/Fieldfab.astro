@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import prototrak from '../../assets/field/prototrak.png';
+import drilled from '../../assets/field/drilled.png';
+import table from '../../assets/field/table.png';
+import truck from '../../assets/field/truck.png';
+import assembled from '../../assets/field/assembled.png';
+import welding from '../../assets/field/welding.png';
+import doors from '../../assets/field/doors.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={prototrak}
+    alt="Me operating a prototrak vertical mill"
+    densities={[1, 2, 3]} 
+  />
+
+  <br/>
+  <p class="text-white">
+    The first was this Prototrak mill, which has steppers and a conversational interface. I set up a stop and waypoints for each of the holes on the pattern, and since I designed all my 5/16 holes to have a consistent distance from an edge, this single setup was enough to drill all of the tubes over the course of a couple days.
+  </p>
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={drilled}
+    alt="Stacks of drilled steel box tube"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <p class="text-white">
+    This was the first batch of steel tubing after deburring the holes. There were two more of these for the whole field to be completed.
+    <br/><br/>
+    The next major thing that helped accelerate the fabrication was this crazy Siegmund weld fixturing table. This enabled us to do setups for all the sections and weld directly.
+  </p>
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={table}
+    alt="Welding table with setup"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={welding}
+    alt="Me welding on the setup table"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <p class="text-white">
+    After all of this was complete, the doors were welded seperately with some clamps. Bit tedious, but got done quickly.
+    <br/>
+  </p>
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={doors}
+    alt="doors setup with clamps to be welded"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <p class="text-white">
+    And yes, it did indeed all fit in the back of the truck once grinded and finished.
+    <br/>
+  </p>
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={truck}
+    alt="doors setup with clamps to be welded"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <Image
+    class="project-image border  border-black"
+    src={assembled}
+    alt="doors setup with clamps to be welded"
+    densities={[1, 2, 3]} 
+  />
+  <br/>
+  <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+    Next Steps
+  </h1>
+  <p class="text-white">
+    After completing a dry fit of all the parts in the space, they are off to be powdercoated at Leon's in Oakland. After we get the parts back, the next step will be to skin the walls and shelves with lexan and plywood. When we get the final thing together, I'll make sure to send an update here.
+    <br/>
+  </p>
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+</style>

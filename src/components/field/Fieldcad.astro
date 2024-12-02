@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import fieldcad from '../../assets/field/field.webp';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={fieldcad}
+    alt="Image of field perimeter for FIRST Robotics Competiton"
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+</style>

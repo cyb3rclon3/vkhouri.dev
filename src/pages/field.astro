@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Field from "../components/field/Field.astro";
+import Fieldcad from "../components/field/Fieldcad.astro";
+import Fieldfab from "../components/field/Fieldfab.astro";
 ---
 
 <Layout title="FRC Field | Vaughn Khouri">
@@ -17,8 +19,34 @@ import Field from "../components/field/Field.astro";
     <p class="text-white">
       <i>A full-size field perimeter built for FRC, assembled in mild steel sections</i> <br />
       <br />
-      TODO
     </p>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Summary
+    </h2>
+    <p class="text-white">
+      This is a work-in-progress project. Ever since my first year competing in FRC, having a full field to practice on has been something of a pipe dream. This year, the stars alligned, and we were able to rent a large enough space to fit it. The task of building the perimeter fell to me, and I wanted to create something that would last 10+ years.
+      <br />
+      <br />
+      To do that, I drew on my experience with my <a href="kart" target="_blank" class="underline inline">go-kart project</a> to make something really robust. I based the dimensions of my design off of the official field, but I started from scratch design wise. Optimizing for simplicity, part count, and transportability, I ended up with a design that uses many identical sections and can fit in the bed of a pick up truck when dismantled. I designed the field in Onshape.
+    </p>
+    <Fieldcad/>
+    <p class="text-white">
+      The 6 "driver station" segments split into a base and a window, and each of the wall sections split and can be stacked. Each section gets bolted to the next with 3 5/16 bolts, and most of these joints also get a bent steel "foot", which was ordered from an online laser cutting service. These get velcro on the bottom, which sticks to the carpet.
+      <br />
+      <br />
+      The shelves are designed to be made from 3/4 birch plywood and even have some cable grommets to make charging laptops or other devices easier. Field walls are skinned with 1/4 polycarbonate (lexan) and self-drilling screws. Finally, the door sections use some extra welded plate steel elements so they can slide out.
+    </p>
+    <br/>
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Fabrication
+    </h3>
+    <p class="text-white">
+      Cutting, drilling, welding and grinding all of the sections proved to be a monumental task. Working with several 8033 members and parents, we completed the work in several weekends in a welding shop on treasure island. A few things there helped hugely to accelerate the process.
+      <br />
+    </p>
+    <br/>
+    <Fieldfab/>
+
     <BackButton />
   </div>
 </Layout>
