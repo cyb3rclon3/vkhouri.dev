@@ -6,8 +6,9 @@ interface Props {
 const { title } = Astro.props;
 
 const siteDescription = "Technical documentation of the things I make.";
-const siteTitle = "Vaughn Khouri | Portfolio";
+const siteTitle = "VKhouri.dev";
 const siteURL = "https://www.vkhouri.dev";
+import Analytics from '@vercel/analytics/astro'
 ---
 
 <!doctype html>
@@ -215,3 +216,4 @@ const siteURL = "https://www.vkhouri.dev";
     </style>
   </body>
 </html>
+<Analytics/>
