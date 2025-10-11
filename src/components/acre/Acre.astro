@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import acre from '../../assets/acre/acre.png';
+---
+
+<div>
+  <Image
+    class="project-image border  border-black"
+    src={acre}
+    alt="Tractor without a driver driving in a parking lot."
+    densities={[1, 2, 3]} 
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+    
+  }
+</style>

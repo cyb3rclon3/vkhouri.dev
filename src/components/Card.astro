@@ -3,12 +3,11 @@ interface Props {
   title: string;
   body: string;
   tags?: string;
-  github?: string;
   live?: string;
   href?: string;
 }
 
-const { title, body, tags, github, live, href } = Astro.props;
+const { title, body, tags, live, href } = Astro.props;
 ---
 
 <div class="border-2 border-gray-700 border-zinc-900">
@@ -70,31 +69,6 @@ const { title, body, tags, github, live, href } = Astro.props;
           class="mt-6 inline-flex items-center font-medium text-sm px-5 py-2.5 industry font-medium text-center text-white bg-white-700 hover:bg-white-800 focus:ring-4 focus:outline-none focus:ring-white-300 bg-white-600 hover:bg-white-700 focus:ring-white-800 bg-zinc-800"
         >
           Demo
-          <svg
-            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
-      )
-    }
-    {
-      github && (
-        <a
-          href={github}
-          class="mt-6 inline-flex items-center font-medium text-sm px-5 py-2.5 industry font-medium text-center text-white bg-white-700 hover:bg-white-800 focus:ring-4 focus:outline-none focus:ring-white-300 bg-white-600 hover:bg-white-700 focus:ring-white-800 bg-zinc-800"
-        >
-          GitHub
           <svg
             class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"

@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import Acre from "../components/acre/Acre.astro";
+---
+
+<Layout title="Acre Robotics | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl text-white">
+      Acre Robotics<br />
+      <span class="text-gradient">Letting Tractors See</span>
+    </h1>
+
+    <Acre />
+
+    <p class="lead text-white">
+      <i>First full-stack testing of the Tractor in the Stanford Medical parking lot across the street from the office.</i>
+    </p>
+
+    <br />
+
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Summary
+    </h2>
+
+    <p class="text-white">
+      In summer 2025, I spent 6 weeks at a seed-stage startup in the South Bay that aimed to bring the cost of autonomous tractors down. In less than 30 days, I worked with a small team to turn a completely mechanical Case 75A tractor into a testing platform for our software stack. Here's that story.
+      <br /><br />
+      Coming soon...
+    </p>
+
+    <BackButton />
+  </div>
+</Layout>
+
+<style>
+  .gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .gallery-image {
+    max-width: 100%;
+    max-height: 500px;
+    margin: 0 auto;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  #gallery-image {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
+
+  .gallery-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem;
+    transition: background-color 0.3s ease;
+  }
+
+  #prev-button {
+    left: 3rem;
+  }
+
+  #next-button {
+    right: 3rem;
+  }
+
+  .gallery-nav-button:hover {
+    background-color: #e5e5e5;
+  }
+
+  .gallery-nav-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #0a62f0;
+  }
+
+  .gallery-nav-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #000;
+  }
+</style>
