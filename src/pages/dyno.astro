@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import DynoImage from "../components/dyno/Dyno.astro";
+---
+
+<Layout title="High-speed Dynamometer | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl text-white">
+      MIT Motorsports<br /><span class="text-gradient">High-speed Dynamometer</span>
+    </h1>
+    <DynoImage />
+    <p class="text-white">
+      <i>40kW, 20,000RPM motor test rig.</i>
+      <br /><br />
+    </p>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Writeup Coming Soon
+    </h2>
+    <p class="text-white">
+      This writeup is in progress. In the meantime, feel free to look through some of my design reviews:
+    </p>
+    <br />
+    <div class="slideshow-wrapper">
+      <iframe
+        src="https://docs.google.com/presentation/d/1Ybkkb9u2YNN_1obzV3X9VmbbUkDE6n1_N4iUHlzPDJg/embed"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <br />
+    <div class="slideshow-wrapper">
+      <iframe
+        src="https://docs.google.com/presentation/d/1RyIZQb2yXKtrUvZXKC3hENy0H2tDt7Bl2KNORfdc2Zo/embed"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <br />
+    <div class="slideshow-wrapper">
+      <iframe
+        src="https://docs.google.com/presentation/d/1AxGZZkGOSS0K4Y4XYJhWUm18S1u8RUbLOXn2w89RBtY/embed"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <br />
+    <BackButton />
+  </div>
+</Layout>
+
+<style>
+  .slideshow-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+  }
+
+  .slideshow-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import TetrisImage from "../components/tetris/Tetris.astro";
+---
+
+<Layout title="Tetris on the Green Building | Vaughn Khouri">
+  <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl text-white">
+      Embedded Hardware<br /><span class="text-gradient">Tetris on the Green Building</span>
+    </h1>
+    <TetrisImage />
+    <p class="text-white">
+      <i>Reviving an iconic MIT hack.</i>
+      <br /><br />
+    </p>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Writeup Coming Soon
+    </h2>
+    <p class="text-white">
+      This writeup is in progress. This project took 5 months and I designed the enclosure and base station hardware. In the meantime, read this excellent MIT Admissions blog post covering the project: <a href="https://mitadmissions.org/blogs/entry/the-holy-grail-of-hacks-returns/" target="_blank" rel="noopener noreferrer" class="underline">The Holy Grail of Hacks Returns</a>.
+    </p>
+    <br />
+    <BackButton />
+  </div>
+</Layout>

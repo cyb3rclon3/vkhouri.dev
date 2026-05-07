@@ -18,6 +18,11 @@ import Kart from "../components/kart/Kart.astro";
 import Field from "../components/field/Field.astro";
 import Avatar from "../components/Avatar.astro";
 import Acre from "../components/acre/Acre.astro";
+import Tetris from "../components/tetris/Tetris.astro";
+import Dyno from "../components/dyno/Dyno.astro";
+import Inverter from "../components/inverter/Inverter.astro";
+import Onewheel from "../components/onewheel/Onewheel.astro";
+import Formcakes from "../components/formcakes/Formcakes.astro";
 ---
 
 <Layout title="Portfolio | Vaughn Khouri">
@@ -26,11 +31,11 @@ import Acre from "../components/acre/Acre.astro";
       <div class="mb-16 hidden md:block">
         <Heading />
         <p class="mt-4 text-lg text-zinc-400 font-light lg:text-xl">
-          Avid maker, leader, and MechE + Controls, Instrumentation and robotics major at MIT, via Course 2A-6. When I'm not busy with classes or MIT Motorsports I'm usually designing or building something. Here are the some of the projects I've worked on over the years - some of them for competitive robotics, others for summer programs, internships, and many just for fun. 
+          Avid maker, leader, and MechE + Controls, Instrumentation and robotics major at MIT, via Course 2A-6. When I'm not busy with classes or MIT Motorsports I'm usually designing or building something. Here are the some of the projects I've worked on over the years - some of them for competitive robotics, others for summer programs, internships, and many just for fun. Most of my most recent projects don't yet have writeups. Look out for those in the coming weeks!
           <br/>
           <br/>
           Want to chat? Email me at <span class="underline text-gray-300">vaughn.khouri@mit.edu</span> or
-          <a href="#contact" class="underline text-gray-300">contact me.</a> For skills and work experience, see my resume <a href="/vmkresume.pdf" rel="noopener noreferrer" target="_blank" class="underline text-gray-300">here.</a>
+          <a href="#contact" class="underline text-gray-300">contact me.</a> For skills and work experience, see my resume <a href="/vmkresume.pdf" rel="noopener noreferrer" target="_blank" class="underline text-gray-300">here.</a> 
         </p>
       </div>
       
@@ -47,17 +52,65 @@ import Acre from "../components/acre/Acre.astro";
           </a>
         </div>
       </div>
-      
 
       <h2 class="text-3xl mt-6 font-medium lg:text-4xl tracking-tight text-primary text-white mb-2">
-        Highlights
+        Projects
       </h2>
+
       <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- NEW: Tetris on the Green Building -->
+        <div>
+          <Card
+            href="tetris"
+            title="Tetris on the Green Building"
+            body="Custom mass-produced modules and firmware, reviving the infamous hack after 15 years."
+            tags="Embedded Firmware, Electronics, Mass Production, LED"
+          >
+            <Tetris />
+          </Card>
+        </div>
+
+        <!-- NEW: High-speed Dynamometer -->
+        <div>
+          <Card
+            href="dyno"
+            title="High-speed Dynamometer"
+            body="Custom test rig built for endurance testing and controls tuning loaded 40kW, 20,000RPM PMSM motors."
+            tags="Hardware Design, Motor Controls, Instrumentation, CAD"
+          >
+            <Dyno />
+          </Card>
+        </div>
+
+        <!-- NEW: MY26 HV Inverter Box -->
+        <div>
+          <Card
+            href="inverter"
+            title="MY26 High-voltage Inverter Box"
+            body="Cooling and enclosure hardware for MIT Motorsports MY26 custom inverters. 150kW output at 600V."
+            tags="MIT Motorsports, High Voltage, Thermal, Hardware Design"
+          >
+            <Inverter />
+          </Card>
+        </div>
+
+        <!-- NEW: 134 Volt Onewheel -->
+        <div>
+          <Card
+            href="onewheel"
+            title="134 Volt Onewheel"
+            body="VESC-based Onewheel with a custom-built 30s tabless battery pack."
+            tags="Battery, VESC, Electronics, Hardware Design"
+          >
+            <Onewheel />
+          </Card>
+        </div>
+
         <div>
           <Card
             href="flex"
             title="Flex"
-            body="A portable cable workout machine that can stick to surfaces with suction, complete with a personal trainer app. Can simulate up to 45 lbs of weight via brushless DC motor."
+            body="A portable cable workout machine that can stick to surfaces via suction and simulate 45lb reps."
             tags="Product concept, Hardware Design, Raspberry Pi, Bluetooth"
           >
             <div class="max-w-full">
@@ -65,6 +118,18 @@ import Acre from "../components/acre/Acre.astro";
             </div>
           </Card>
         </div>
+        <!-- NEW: FormCakes -->
+        <div>
+          <Card
+            href="formcakes"
+            title="FormCakes"
+            body="Automated pancake injection molding machine, built for FormLabs Hackathon 2026."
+            tags="Hackathon, Mechanical Design, Electronics, Automation"
+          >
+            <Formcakes />
+          </Card>
+        </div>
+
         <div>
           <Card
             href="powerplay"
@@ -77,6 +142,7 @@ import Acre from "../components/acre/Acre.astro";
             </div>
           </Card>
         </div>
+
         <div>
           <Card
             href="acre"
@@ -89,11 +155,7 @@ import Acre from "../components/acre/Acre.astro";
             </div>
           </Card>
         </div>
-      </div>
-      <h2 class="text-3xl mt-6 font-medium lg:text-4xl tracking-tight text-primary text-white mb-2">
-        FIRST Robotics
-      </h2>
-      <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+
         <div>
           <Card
             href="banshee"
@@ -104,6 +166,7 @@ import Acre from "../components/acre/Acre.astro";
             <Banshee />
           </Card>
         </div>
+
         <div>
           <Card
             title="Battery Cart"
@@ -114,6 +177,7 @@ import Acre from "../components/acre/Acre.astro";
             <Cart />
           </Card>
         </div>
+
         <div>
           <Card
             title="Illuminating Awards"
@@ -124,12 +188,7 @@ import Acre from "../components/acre/Acre.astro";
             <Awards />
           </Card>
         </div>
-      </div>
-      
-      <h2 class="text-3xl mt-6 font-medium lg:text-4xl tracking-tight text-primary text-white mb-2">
-        Interactive Costumes
-      </h2>
-      <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+
         <div>
           <Card
             title="Captain America's Electromagnetic Shield"
@@ -140,9 +199,10 @@ import Acre from "../components/acre/Acre.astro";
             <Shield />
           </Card>
         </div>
+
         <div>
           <Card
-            title="Poseidon’s Water-spraying Trident"
+            title="Poseidon's Water-spraying Trident"
             body="Backpack mounted water tank and air compressor mix air and water to fire high-pressure mist from the end of a trident."
             tags="Costumes, Electronics, Pneumatics, Woodworking"
             href="trident"
@@ -150,6 +210,7 @@ import Acre from "../components/acre/Acre.astro";
             <Trident />
           </Card>
         </div>
+
         <div>
           <Card
             title="Wolverine's Retractable Claws"
@@ -160,35 +221,30 @@ import Acre from "../components/acre/Acre.astro";
             <Claws />
           </Card>
         </div>
-      </div>
-      
-      <h2 class="text-3xl mt-6 font-medium lg:text-4xl tracking-tight text-primary text-white mb-2">
-        Large-scale Steel Fabrication
-      </h2>
-      <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+
         <div>
           <Card
-          title="FRC Field Perimeter"
-          body="Full-size (26 by 54 ft) field perimeter built for FIRST Robotics Competition. Designed in modular sections."
-          tags="FIRST, Steel fabrication, CAD"
-          href="field"
-        >
-          <Field />
-        </Card>
-          
+            title="FRC Field Perimeter"
+            body="Full-size (26 by 54 ft) field perimeter built for FIRST Robotics Competition. Designed in modular sections."
+            tags="FIRST, Steel fabrication, CAD"
+            href="field"
+          >
+            <Field />
+          </Card>
         </div>
+
         <div>
           <Card
-          title="Go-Kart"
-          body="Powered by an aftermarket-tuned 212cc 4-stroke engine, capable of 45+ MPH. Mild steel welded frame."
-          tags="Steel fabrication, ICE"
-          href="kart"
-        >
-          <Kart />
-        </Card>
+            title="Go-Kart"
+            body="Powered by an aftermarket-tuned 212cc 4-stroke engine, capable of 45+ MPH. Mild steel welded frame."
+            tags="Steel fabrication, ICE"
+            href="kart"
+          >
+            <Kart />
+          </Card>
         </div>
       </div>
-      
+
       <div class="my-8">
         <Contact />
       </div>
