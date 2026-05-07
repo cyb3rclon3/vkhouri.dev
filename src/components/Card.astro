@@ -5,13 +5,24 @@ interface Props {
   tags?: string;
   live?: string;
   href?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, body, tags, live, href } = Astro.props;
+const { title, body, tags, live, href, image, imageAlt } = Astro.props;
+const hasMedia = Astro.slots.has('default') || image;
 ---
 
 <div class="border-2 border-gray-700 border-zinc-900">
-  <slot />
+  {hasMedia && (
+    <div class="card-image-wrapper">
+      {image ? (
+        <img src={image} alt={imageAlt ?? title} class="card-img" />
+      ) : (
+        <slot />
+      )}
+    </div>
+  )}
   <div class="p-5">
     {
       href && (
@@ -91,6 +102,34 @@ const { title, body, tags, live, href } = Astro.props;
 </div>
 
 <style>
+  .card-image-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Pierce slot-based image components */
+  .card-image-wrapper :global(img) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .link-card {
     list-style: none;
     display: flex;

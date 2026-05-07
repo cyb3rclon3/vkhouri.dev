@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import onewheel from '../../assets/onewheel/onewheel.webp';
+---
+
+<div>
+  <Image
+    class="project-image border border-black"
+    src={onewheel}
+    alt="134 Volt Onewheel"
+    densities={[1, 2, 3]}
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+</style>

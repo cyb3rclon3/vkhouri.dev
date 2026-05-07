@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import placeholder from '../../assets/dyno/dyno_table.webp';
+---
+
+<div>
+  <Image
+    class="project-image border border-black"
+    src={placeholder}
+    alt="High-speed Dynamometer"
+    densities={[1, 2, 3]}
+  />
+</div>
+
+<style>
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+</style>
