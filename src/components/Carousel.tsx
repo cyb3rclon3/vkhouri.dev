@@ -19,13 +19,20 @@ export default function Carousel({ images }: { images: string[] }) {
   const nextImage = () => setCurrentImage((currentImage + 1) % images.length);
   const prevImage = () => setCurrentImage((currentImage - 1 + images.length) % images.length);
 
+  const prev = (currentImage - 1 + images.length) % images.length;
+  const next = (currentImage + 1) % images.length;
+
   return (
     <div className="relative flex flex-col gap-3">
       <div className="sm:h-[500px] relative flex flex-col">
         <div>
-          {images.map((image, index) => (
-            <img key={index} src={image} className={cn({ "hidden": currentImage !== index }, "flex-1 sm:h-[500px] w-full sm:absolute inset-0 object-contain")} />
-          ))}
+          {/* Only render current image; preload adjacent ones */}
+          <img
+            src={images[currentImage]}
+            className="flex-1 sm:h-[500px] w-full sm:absolute inset-0 object-contain"
+          />
+          <link rel="preload" as="image" href={images[next]} />
+          <link rel="preload" as="image" href={images[prev]} />
         </div>
         <div className="flex justify-between items-center sm:absolute sm:h-full w-full bg-zinc-900 sm:bg-transparent pointer-events-none">
           <IconButton onClick={prevImage} className="pointer-events-auto">

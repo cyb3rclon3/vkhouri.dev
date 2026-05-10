@@ -26,24 +26,24 @@ import Carousel from "../components/Carousel";
       Background
     </h2>
     <p class="text-white">
-      MIT Motorsports is the Formula SAE Electric team here at MIT. Since 2025, out car has run a 4-wheel drive architecture with motors and gearboxes integrated into the wheel packages. This means that we have 4 brushless motors, each capable of about 30kW peak output, that are powered by a 134s tabless battery pack (based on 21700 cells).
+      MIT Motorsports is the Formula SAE Electric team here at MIT. Since 2025, our car has run a 4-wheel drive architecture with motors and gearboxes integrated into the wheel packages. This means that we have 4 brushless motors, each capable of about 30kW peak output, that are powered by a 134s tabless battery pack (based on 21700 cells).
     </p>
     
     <br />
     <Image src={wheelPackage} alt="MIT Motorsports MY25 car on track" class="w-full border border-black" densities={[1, 2, 3]} />
     <br />
     <p class="text-white">
-      Four seperate water-cooled inverters are required to control the four motors, and historically, we have used the inverters sold by AMK, the same company that manufactures the motors we use. These inverters are non-ideal for many reasons, mostly because it's design is from around 2014. Some of its issues include:
+      Four separate water-cooled inverters are required to control the four motors, and historically, we have used the inverters sold by AMK, the same company that manufactures the motors we use. These inverters are non-ideal for many reasons, mostly because it's design is from around 2014. Some of its issues include:
     </p>
     <ul class="text-white bullet-list">
       <li>Poor efficiency and low switching frequency due to dated IGBTs</li>
-      <li>Poor overvoltage protection, combined with a fault mode where all gates open, which causes a transient that can permenantly damage it</li>
+      <li>Poor over voltage protection, combined with a fault mode where all gates open, which causes a transient that can permanently damage it</li>
       <li>Extremely poor volume and mass efficiency — the 4 inverters take up more space than the entire 134s2p battery</li>
       <li>Poor isolation, making it relatively unsafe, and many grounding-related noise / EMI issues</li>
     </ul>
     <br />
     <p class="text-white">
-      Despite all of these issues, almost all FSAE teams that use AMK motors also use these inverters. This comes down to the fact that it's extremely difficult to build a 600V inverter that can operate at the level of reliability needed for competiton. In 2025, a subteam headed by Liong Ma began work on a custom inverter that could improve on the AMK hardware. Development took 2 years.
+      Despite all of these issues, almost all FSAE teams that use AMK motors also use these inverters. This comes down to the fact that it's extremely difficult to build a 600V inverter that can operate at the level of reliability needed for competition. In 2025, a subteam headed by Liong Ma began work on a custom inverter that could improve on the AMK hardware. Development took 2 years.
     </p>
     <br />
     <Image src={hvInverter} alt="MY26 HV Inverter" class="w-full border border-black" densities={[1, 2, 3]} />
@@ -66,7 +66,7 @@ import Carousel from "../components/Carousel";
 </div>
 <br>
 <p class="text-white">
-  In the ideal model, L<sub>d</sub> and L<sub>q</sub> are treated as fixed constants. However, in reality, as current magnitude increases, the iron core of the motor begins to saturate, and the magnetic flux density stops rising proportionally with the applied field. Thus the incremental permeability of the core drops, and both L<sub>d</sub> and L<sub>q</sub> become nonlinear functions of the operating point (i<sub>d</sub>, i<sub>q</sub>). <br><br>We ultimately observed that L<sub>q</sub> peaks near zero i<sub>d</sub> and rolls off symmetrically with i<sub>q</sub>, exibiting cross-saturation, where flux in one axis suppresses permeability in the other. This cross-coupling term is often ignored in textbook controllers but becomes significant at high current levels. In our case, a more accurate formulation was required, which would replace the constant inductances with lookup tables L<sub>d</sub>(i<sub>d</sub>, i<sub>q</sub>) and L<sub>q</sub>(i<sub>d</sub>, i<sub>q</sub>), and add a cross-saturation correction:
+  In the ideal model, L<sub>d</sub> and L<sub>q</sub> are treated as fixed constants. However, in reality, as current magnitude increases, the iron core of the motor begins to saturate, and the magnetic flux density stops rising proportionally with the applied field. Thus the incremental permeability of the core drops, and both L<sub>d</sub> and L<sub>q</sub> become nonlinear functions of the operating point (i<sub>d</sub>, i<sub>q</sub>). <br><br>We ultimately observed that L<sub>q</sub> peaks near zero i<sub>d</sub> and rolls off symmetrically with i<sub>q</sub>, exhibiting cross-saturation, where flux in one axis suppresses permeability in the other. This cross-coupling term is often ignored in textbook controllers but becomes significant at high current levels. In our case, a more accurate formulation was required, which would replace the constant inductances with lookup tables L<sub>d</sub>(i<sub>d</sub>, i<sub>q</sub>) and L<sub>q</sub>(i<sub>d</sub>, i<sub>q</sub>), and add a cross-saturation correction:
 </p>
 <br>
 <div class="equation-block">
@@ -75,7 +75,7 @@ import Carousel from "../components/Carousel";
 </div>
 <br>
 <p class="text-white">
-  where L<sub>dq</sub> is the cross-saturation inductance, and λ<sub>d</sub>, λ<sub>q</sub> are the full (nonlinear) flux linkage maps. The implmentation of these lookup tables as part of a predictive deadbeat controller finally allowed us to achieve stable controls throughout the entire torque and speed range of the motors. But to get there, we needed hardware which would allow us to record clean output speed and torque data on the AMK motor output throughout its operating range. <br><br> The flight-critical nature of the inverters also meant that putting them on the car would require extensive bench testing, both to find its failure points and to size our cooling infrastructure on the rest of the car.
+  where L<sub>dq</sub> is the cross-saturation inductance, and λ<sub>d</sub>, λ<sub>q</sub> are the full (nonlinear) flux linkage maps. The implementation of these lookup tables as part of a predictive deadbeat controller finally allowed us to achieve stable controls throughout the entire torque and speed range of the motors. But to get there, we needed hardware which would allow us to record clean output speed and torque data on the AMK motor output throughout its operating range. <br><br> The flight-critical nature of the inverters also meant that putting them on the car would require extensive bench testing, both to find its failure points and to size our cooling infrastructure on the rest of the car.
 </p>
 <br>
 <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
@@ -85,7 +85,7 @@ import Carousel from "../components/Carousel";
 This hardware took the form of a benchtop dynamometer, which had some unique design requirements:
 </p>
 <ul class="text-white bullet-list">
-      <li>Push a single (test) AMK motor to it's operating limits. This nessesitates a load, which is sometimes a disk brake, or passive magnetic brake. In our case, a second AMK motor is used, which can either act as a torque load proportional to velocity (via shorting the phases) or can be seperately controlled by a second inverter for more complex tests.</li>
+      <li>Push a single (test) AMK motor to its operating limits. This necessitates a load, which is sometimes a disk brake, or passive magnetic brake. In our case, a second AMK motor is used, which can either act as a torque load proportional to velocity (via shorting the phases) or can be separately controlled by a second inverter for more complex tests.</li>
       <li>Accurately measure the output torque and speed throughout the operating range. For this we use a high-speed torque transducer supplied by HBK. It's rated to 20,000RPM and 21Nm of torque, just barely under the maximum achievable by the AMKs.</li>
       <li>Avoid vibrations. Since the torque transducer is essentially a load cell, vibrations would directly translate to noise in our measurements. This meant that the concentricity and axial colinearity of the two motors and transducer was a big concern.</li>
       <li>If the vibrations hit a resonant mode of the structure, the entire dyno could also tear itself apart. From the 20,000RPM top speed the operating vibration load case was set at 350Hz. With a 2.0FoS, we targeted a 700Hz fundamental frequency for the structure.</li>
@@ -138,7 +138,7 @@ I'll be brief here since the DRs include tons of detail, but the final design us
     <Image src={modalAnalysis} alt="Modal analysis of dynamometer structure" class="w-full border border-black" densities={[1, 2, 3]} />
     <br />
     <p class="text-white">
-While I initially thought that the 700Hz design requirement would be easy to hit, the first solver run gave a fundmental frequency around 400Hz. This was concerning, but it turned out that I was losing the majority of my stiffness in the fastners, which became clear when looking at the modes. I increased the bolts holding each upright half together from 4 to 6, and more than doubled the bolts holding the uprights to the base plate. I also increased the size of the dowel pins. After these changes I was able to hit a fundamental frequency of about 696Hz, which was good enough. <br><br>Even so, I assembled the dyno with Nordlock washers on all fastners and red locktite on critical retaining fastners. Machining started with drilling the steel base plate on our VF2, followed by hours of lathe work boring out 5 inch OD 6061 stock and finishing on the fitted bores, and finally back on the VF2 to do the final operations on the aluminum parts.
+While I initially thought that the 700Hz design requirement would be easy to hit, the first solver run gave a fundamental frequency around 400Hz. This was concerning, but it turned out that I was losing the majority of my stiffness in the fasteners, which became clear when looking at the modes. I increased the bolts holding each upright half together from 4 to 6, and more than doubled the bolts holding the uprights to the base plate. I also increased the size of the dowel pins. After these changes I was able to hit a fundamental frequency of about 696Hz, which was good enough. <br><br>Even so, I assembled the dyno with Nordlock washers on all fasteners and red Loctite on critical retaining fasteners. Machining started with drilling the steel base plate on our VF2, followed by hours of lathe work boring out 5 inch OD 6061 stock and finishing on the fitted bores, and finally back on the VF2 to do the final operations on the aluminum parts.
 </p>
     <br />
     <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
