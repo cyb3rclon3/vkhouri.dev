@@ -2,6 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import InverterImage from "../components/inverter/Inverter.astro";
+import { Image } from "astro:assets";
+import internal from "../assets/inverter/internal.webp";
+import shield from "../assets/inverter/shield.webp";
 ---
 
 <Layout title="MY26 HV Inverter Box | Vaughn Khouri">
@@ -15,12 +18,28 @@ import InverterImage from "../components/inverter/Inverter.astro";
       <br /><br />
     </p>
     <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
-      Writeup Coming Soon
+      Background
     </h2>
     <p class="text-white">
-      This writeup is in progress.
+      The inverter box appeared somewhat suddenly as a deliverable after we determined Liong Ma's custom inverters were ready to go on the car. It needed to house a cold plate and 4 inverters with significant consideration for EMI, grounding, isolation, harnessing, and also bus bars to power all four inverters.<br><br>The box itself is folded sheet metal, laser welded and then finished. This was made by ZTL out of house. The inside houses a cold plate which is made in two parts and then braised. An internal geometry brings water in a zig zag pattern across the 4 inverters, which are packaged on either side.
+    </p>
+    
+    <br />
+    <Image src={internal} alt="MY26 HV Inverter Box internals" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+    The two copper bus bars were bent against 3D printed jigs and then wrapped in insulative self-bonding tape. A high-performance thermal interface material couples the discrete FETs to heat spreaders which are clamped to the cold plate. One significant challenge here was board deflection, which caused uneve heating across the 6 mosfets. This was ultimately solved by adding more screw holes and spacers under the board which we tuned to create the optimal TIM compression.<br><br>I milled aluminum shields for the MCUs onboard each inverter, which significantly helped with EMI and thermals on each STM32.
     </p>
     <br />
+    <Image src={shield} alt="MCU EMI shield" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Conclusion
+    </h2>
+    <p class="text-white">
+    I want to give a huge shoutout to Liong Ma for doing the majority of the assembly work for this box. I designed it to be way too tightly packaged, which made harnessing really difficult. We still got it assembled though, resulting in a huge (5x) decrease in volume and mass (5kg+) compared to last years inverter boxes. I definitely learned one lesson with this project: wires take up a lot of space.
+  </p>
+  
     <BackButton />
   </div>
 </Layout>
