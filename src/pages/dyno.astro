@@ -2,6 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import DynoImage from "../components/dyno/Dyno.astro";
+import { Image } from "astro:assets";
+import wheelPackage from "../assets/dyno/wheel_package.webp";
+import dynofull from "../assets/dyno/dynofull.webp";
+import modalAnalysis from "../assets/dyno/modal_analysis.webp";
+import hvInverter from "../assets/dyno/hvinverter.webp";
+import inverterBinder1 from "../assets/dyno/inverter_binder_1.webp";
+import inverterBinder2 from "../assets/dyno/inverter_binder_2.webp";
+import Carousel from "../components/Carousel";
 ---
 
 <Layout title="High-speed Dynamometer | Vaughn Khouri">
@@ -15,38 +23,210 @@ import DynoImage from "../components/dyno/Dyno.astro";
       <br /><br />
     </p>
     <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
-      Writeup Coming Soon
+      Background
     </h2>
     <p class="text-white">
-      This writeup is in progress. In the meantime, feel free to look through some of my design reviews:
+      MIT Motorsports is the Formula SAE Electric team here at MIT. Since 2025, out car has run a 4-wheel drive architecture with motors and gearboxes integrated into the wheel packages. This means that we have 4 brushless motors, each capable of about 30kW peak output, that are powered by a 134s tabless battery pack (based on 21700 cells).
+    </p>
+    
+    <br />
+    <Image src={wheelPackage} alt="MIT Motorsports MY25 car on track" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+      Four seperate water-cooled inverters are required to control the four motors, and historically, we have used the inverters sold by AMK, the same company that manufactures the motors we use. These inverters are non-ideal for many reasons, mostly because it's design is from around 2014. Some of its issues include:
+    </p>
+    <ul class="text-white bullet-list">
+      <li>Poor efficiency and low switching frequency due to dated IGBTs</li>
+      <li>Poor overvoltage protection, combined with a fault mode where all gates open, which causes a transient that can permenantly damage it</li>
+      <li>Extremely poor volume and mass efficiency — the 4 inverters take up more space than the entire 134s2p battery</li>
+      <li>Poor isolation, making it relatively unsafe, and many grounding-related noise / EMI issues</li>
+    </ul>
+    <br />
+    <p class="text-white">
+      Despite all of these issues, almost all FSAE teams that use AMK motors also use these inverters. This comes down to the fact that it's extremely difficult to build a 600V inverter that can operate at the level of reliability needed for competiton. In 2025, a subteam headed by Liong Ma began work on a custom inverter that could improve on the AMK hardware. Development took 2 years.
     </p>
     <br />
-    <div class="slideshow-wrapper">
-      <iframe
-        src="https://docs.google.com/presentation/d/1Ybkkb9u2YNN_1obzV3X9VmbbUkDE6n1_N4iUHlzPDJg/embed"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <Image src={hvInverter} alt="MY26 HV Inverter" class="w-full border border-black" densities={[1, 2, 3]} />
     <br />
-    <div class="slideshow-wrapper">
+    <p class="text-white">
+       By Fall 2025, the hardware was nearing completion, and firmware development was beginning to speed up. One thing had become very clear.
+    </p>
+    <br>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Stable Controls Are Hard
+    </h2>
+    <p class="text-white">
+  In general, PMSMs follow the dq-axis model, where the voltage and torque equations are given by:
+</p>
+<br>
+<div class="equation-block">
+  <div class="equation-line">v<sub>d</sub> = R·i<sub>d</sub> + L<sub>d</sub>·(di<sub>d</sub>/dt) − ω<sub>e</sub>·L<sub>q</sub>·i<sub>q</sub></div>
+  <div class="equation-line">v<sub>q</sub> = R·i<sub>q</sub> + L<sub>q</sub>·(di<sub>q</sub>/dt) + ω<sub>e</sub>·(L<sub>d</sub>·i<sub>d</sub> + λ<sub>PM</sub>)</div>
+  <div class="equation-line">T<sub>e</sub> = (3/2)·p·[λ<sub>PM</sub>·i<sub>q</sub> + (L<sub>d</sub> − L<sub>q</sub>)·i<sub>d</sub>·i<sub>q</sub>]</div>
+</div>
+<br>
+<p class="text-white">
+  In the ideal model, L<sub>d</sub> and L<sub>q</sub> are treated as fixed constants. However, in reality, as current magnitude increases, the iron core of the motor begins to saturate, and the magnetic flux density stops rising proportionally with the applied field. Thus the incremental permeability of the core drops, and both L<sub>d</sub> and L<sub>q</sub> become nonlinear functions of the operating point (i<sub>d</sub>, i<sub>q</sub>). <br><br>We ultimately observed that L<sub>q</sub> peaks near zero i<sub>d</sub> and rolls off symmetrically with i<sub>q</sub>, exibiting cross-saturation, where flux in one axis suppresses permeability in the other. This cross-coupling term is often ignored in textbook controllers but becomes significant at high current levels. In our case, a more accurate formulation was required, which would replace the constant inductances with lookup tables L<sub>d</sub>(i<sub>d</sub>, i<sub>q</sub>) and L<sub>q</sub>(i<sub>d</sub>, i<sub>q</sub>), and add a cross-saturation correction:
+</p>
+<br>
+<div class="equation-block">
+  <div class="equation-line">v<sub>d</sub> = R·i<sub>d</sub> + L<sub>d</sub>(i<sub>d</sub>,i<sub>q</sub>)·(di<sub>d</sub>/dt) + L<sub>dq</sub>(i<sub>d</sub>,i<sub>q</sub>)·(di<sub>q</sub>/dt) − ω<sub>e</sub>·λ<sub>q</sub>(i<sub>d</sub>,i<sub>q</sub>)</div>
+  <div class="equation-line">v<sub>q</sub> = R·i<sub>q</sub> + L<sub>q</sub>(i<sub>d</sub>,i<sub>q</sub>)·(di<sub>q</sub>/dt) + L<sub>dq</sub>(i<sub>d</sub>,i<sub>q</sub>)·(di<sub>d</sub>/dt) + ω<sub>e</sub>·λ<sub>d</sub>(i<sub>d</sub>,i<sub>q</sub>)</div>
+</div>
+<br>
+<p class="text-white">
+  where L<sub>dq</sub> is the cross-saturation inductance, and λ<sub>d</sub>, λ<sub>q</sub> are the full (nonlinear) flux linkage maps. The implmentation of these lookup tables as part of a predictive deadbeat controller finally allowed us to achieve stable controls throughout the entire torque and speed range of the motors. But to get there, we needed hardware which would allow us to record clean output speed and torque data on the AMK motor output throughout its operating range. <br><br> The flight-critical nature of the inverters also meant that putting them on the car would require extensive bench testing, both to find its failure points and to size our cooling infrastructure on the rest of the car.
+</p>
+<br>
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Enter the Dyno
+    </h2>
+<p class="text-white">
+This hardware took the form of a benchtop dynamometer, which had some unique design requirements:
+</p>
+<ul class="text-white bullet-list">
+      <li>Push a single (test) AMK motor to it's operating limits. This nessesitates a load, which is sometimes a disk brake, or passive magnetic brake. In our case, a second AMK motor is used, which can either act as a torque load proportional to velocity (via shorting the phases) or can be seperately controlled by a second inverter for more complex tests.</li>
+      <li>Accurately measure the output torque and speed throughout the operating range. For this we use a high-speed torque transducer supplied by HBK. It's rated to 20,000RPM and 21Nm of torque, just barely under the maximum achievable by the AMKs.</li>
+      <li>Avoid vibrations. Since the torque transducer is essentially a load cell, vibrations would directly translate to noise in our measurements. This meant that the concentricity and axial colinearity of the two motors and transducer was a big concern.</li>
+      <li>If the vibrations hit a resonant mode of the structure, the entire dyno could also tear itself apart. From the 20,000RPM top speed the operating vibration load case was set at 350Hz. With a 2.0FoS, we targeted a 700Hz fundamental frequency for the structure.</li>
+      <li>Run for extended periods. This was perhaps the easiest design requirement to hit. Two aluminum 3D-printed cooling sleeves were used from the 2025 car. A miniature cooling loop with a pump and ice water keeps the motors and inverters cool.</li>
+</ul>
+<p class="text-white">
+MIT Motorsports has a robust design review process and this was my first introduction to it. For this project, I did a Design Requirement Design Review, Conceptual Design Review, and a Critical / Fabrication Design review, before I started machining.
+</p>
+<br />
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      DRDR
+</h2>
+    
+    <div class="slideshow-container"><div class="slideshow-wrapper">
       <iframe
         src="https://docs.google.com/presentation/d/1RyIZQb2yXKtrUvZXKC3hENy0H2tDt7Bl2KNORfdc2Zo/embed"
         allowfullscreen
       ></iframe>
-    </div>
+    </div></div>
     <br />
-    <div class="slideshow-wrapper">
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      CoDR
+</h2>
+    <div class="slideshow-container"><div class="slideshow-wrapper">
+      <iframe
+        src="https://docs.google.com/presentation/d/1Ybkkb9u2YNN_1obzV3X9VmbbUkDE6n1_N4iUHlzPDJg/embed"
+        allowfullscreen
+      ></iframe>
+    </div></div>
+    <br />
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      CDR
+</h2>
+    <div class="slideshow-container"><div class="slideshow-wrapper">
       <iframe
         src="https://docs.google.com/presentation/d/1AxGZZkGOSS0K4Y4XYJhWUm18S1u8RUbLOXn2w89RBtY/embed"
         allowfullscreen
       ></iframe>
+    </div></div>
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+     Final Design
+</h2>
+    <Image src={dynofull} alt="Full dynamometer assembly" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+<p class="text-white">
+I'll be brief here since the DRs include tons of detail, but the final design uses two turned "uprights" on a steel base plate with rubber feet. The outputs of the motors are connected to (very expensive) flex couplers from HBK through wire-edm cut adapters that are then connected to each side of the transducer. The uprights were machined in two halves because the locating bosses on the AMK and transducer were actually smaller than the outer diameter of the coupler. <br><br>By turning each upright half on a single setup on our Prototrak lathe, the concentricity of each bore across the entire setup is precise. Each upright is located to the base plate with two dowel pins (one of which is fitted into a slot to avoid over-constraining the system). Two large cutouts were added so that the clamping collar could be tightened once the whole thing was assembled.<br><br>One of the most unfamiliar aspects of the design process with the dyno was my modal analysis, which was done in NX Simcenter. After modelling standins for the AMK motors with a similar mass and MOI, each part was meshed and then bolts were simulated with CBUSH and RBE3 joints with stiffnesses I calculated per axis. The Real Eigenvalues solver then gave me my modes:
+</p>
+
+    <br />
+    <Image src={modalAnalysis} alt="Modal analysis of dynamometer structure" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+While I initially thought that the 700Hz design requirement would be easy to hit, the first solver run gave a fundmental frequency around 400Hz. This was concerning, but it turned out that I was losing the majority of my stiffness in the fastners, which became clear when looking at the modes. I increased the bolts holding each upright half together from 4 to 6, and more than doubled the bolts holding the uprights to the base plate. I also increased the size of the dowel pins. After these changes I was able to hit a fundamental frequency of about 696Hz, which was good enough. <br><br>Even so, I assembled the dyno with Nordlock washers on all fastners and red locktite on critical retaining fastners. Machining started with drilling the steel base plate on our VF2, followed by hours of lathe work boring out 5 inch OD 6061 stock and finishing on the fitted bores, and finally back on the VF2 to do the final operations on the aluminum parts.
+</p>
+    <br />
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Machining and Assembly
+    </h3>
+    <Carousel client:load images={[
+      '/assets/images/dyno/gallery/IMG_4131.webp',
+      '/assets/images/dyno/gallery/IMG_4133.webp',
+      '/assets/images/dyno/gallery/IMG_4144.webp',
+      '/assets/images/dyno/gallery/IMG_4149.webp',
+      '/assets/images/dyno/gallery/IMG_4150.webp',
+      '/assets/images/dyno/gallery/IMG_4152.webp',
+      '/assets/images/dyno/gallery/IMG_4156.webp',
+      '/assets/images/dyno/gallery/IMG_4161.webp',
+      '/assets/images/dyno/gallery/IMG_4164.webp',
+      '/assets/images/dyno/gallery/IMG_4185.webp',
+      '/assets/images/dyno/gallery/IMG_4168.webp',
+      '/assets/images/dyno/gallery/IMG_4182.webp',
+    ]} />
+<br/>
+<h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+     Results
+</h2>
+
+<p class="text-white">
+The Dyno has been running since December 2025 and has allowed controls tuning and vetting of our custom inverter hardware for the 2026 car. Liong and his team got far enough with the custom inverter hardware that we moved to package all 4 inside of a housing with cooling hardware, in order to package it on the car, which became my next project. See that writeup <a href="/inverter" class="underline">here</a>. Also, check out some of the data collected using the Dyno below. Credit goes to Liong Ma for setting up these tests and plotting the data.</p>
+
+    <br />
+    <div class="side-by-side">
+      <Image src={inverterBinder1} alt="MY26 Custom Inverter Binder" class="border border-black" densities={[1, 2, 3]} />
+      <Image src={inverterBinder2} alt="MY26 Custom Inverter Binder" class="border border-black" densities={[1, 2, 3]} />
     </div>
     <br />
     <BackButton />
   </div>
+
 </Layout>
 
 <style>
+  .side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .side-by-side :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .equation-block {
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.07);
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    color: white;
+  }
+
+  .equation-line {
+    display: block;
+    padding: 0.2rem 0;
+    white-space: nowrap;
+  }
+
+  .bullet-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slideshow-container {
+    background: rgba(255, 255, 255, 0.07);
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
   .slideshow-wrapper {
     position: relative;
     width: 100%;
