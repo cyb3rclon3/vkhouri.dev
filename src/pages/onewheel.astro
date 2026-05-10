@@ -2,6 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import OnewheelImage from "../components/onewheel/Onewheel.astro";
+import Carousel from "../components/Carousel";
+import { Image } from "astro:assets";
+import wtfRails from "../assets/onewheel/wtf_rails.webp";
+import thor from "../assets/onewheel/thor.webp";
+import batteryCad from "../assets/onewheel/battery_cad.webp";
+import kweld from "../assets/onewheel/kweld.webp";
+import handle1 from "../assets/onewheel/handle/1.webp";
+import handle2 from "../assets/onewheel/handle/2.webp";
+import handle3 from "../assets/onewheel/handle/3.webp";
+import handle4 from "../assets/onewheel/handle/4.webp";
+import handle5 from "../assets/onewheel/handle/5.webp";
 ---
 
 <Layout title="134 Volt Onewheel | Vaughn Khouri">
@@ -15,12 +26,175 @@ import OnewheelImage from "../components/onewheel/Onewheel.astro";
       <br /><br />
     </p>
     <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
-      Writeup Coming Soon
+      Background
     </h2>
     <p class="text-white">
-      This writeup is in progress.
+      Onewheels are self-balancing electric skateboards with a single tire in the middle and an integrated hub motor. They've been around for more than 10 years at this point, and I got my first one, a Pint model, in 2019. I fell in love with how the board rode, both as a commuter and off-road. Over the years, I put more than 2000 miles on my Pint and then later a Pint X, replacing parts as they failed and adding upgraded parts like a treaded tire and bindings. My Onewheel became a ship of thesus situation of sorts, where every single part had been replaced at least once, from the tire to the stator, rotor, controller, battery (three times), BMS, even some of the hardware.<br><br>As I became more comfortable with working on the Pint platform hardware, I started to do more invasive mods, like running Rewheel custom firmware on my controller. But with Future Motion, the company that makes the Onewheel, <a href="https://consumerrights.wiki/w/Future_Motion" target="_blank" rel="noopener noreferrer" class="underline">making it harder and harder to do mods and repairs</a>, I decided to take the plunge and build my own Onewheel from scratch, using the same hardware platform but with custom VESC-based electronics. I wanted to make a more powerful, customizable and repairable board with a far higher top speed, in the same package.<br><br>
+    </p>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Architecture
+    </h2>
+    <p class="text-white">
+      Given that I wanted to stick with the stock Pint frame, a good first step was to design and machine my own W-rails, which are the aluminum sides that hold everything together. By replacing the stock straight rails with a W-shaped profile, the riding stance is lowered without losing any ground clearance at the tips of the nose and tail. 
     </p>
     <br />
+    <Image src={wtfRails} alt="Pint X WTF W-rails" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+      My design was done in Onshape and heavily influenced by the original Pint X W-rails design by The Float Life. I machined them on a Haas VF2 from 7075 aluminum and then sent them out to be sand blasted and anodized clear. <br><br>
+      Given that I was locked into the stock width by the controller and battery housings, I also had to use the stock brushless motor stator. This came with some limitations:
+    </p>
+    <ul class="text-white bullet-list">
+      <li>The Kv is pinned, meaning that even with very agressive field weakening, the top speed is only about 20MPH with the stock 15s (60v) battery</li>
+      <li>The stator saturates at about 180A, and it's plug is rated for even less than that</li>
+      <li>It doesn't handle heat very well when pushing high currents for extended periods</li>
+    </ul>
+    <p class="text-white">
+      All of these signs pointed to a high-voltage battery being the solution. By moving to a 30s (134v nominal) battery, I could get much higher top speed, more power, and better efficiency at high speeds.
+    </p>
+    <br>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Why 30s?
+    </h2>
+    <p class="text-white">
+     The stock battery configuration uses Sony VTC6 cells in a 15s2p configuration, meaning there are 15 cells in series and 2 of those strings in parallel. This gives a nominal voltage of about 60V and a capacity of about 6Ah. By moving to a 30s configuration, I can double the voltage to 134V nominal with the same number of cells, meaning it can fit in the stock battery enclosure. Tabless cells have a significantly higher maximum continuous current than tabbed cells (15a vs 50a), with a lower internal resistance, which made the 1p configuration feasible.<br><br>
+    That wasn't the only option I considered though. Since tabless 18650 cells are so new to the market, it was extremely difficult to find them in the quantities and quality I wanted. With a custom designed battery box and machined lid, it would be possible to fit a 27S battery made with tabless 21700 cells, which are more widely available and have even higher current capabilities. The RS50  from Reliance was a good option for this, and I ended up machining and SLS printing a battery box for a friend who did indeed build a Pint X in this configuration. Credit goes to Cal for his awesome "Quality Pint S" build!
+    </p>
+    <br />
+    <Carousel client:load images={[
+      '/assets/images/onewheel/gallery/0.webp',
+      '/assets/images/onewheel/gallery/1.webp',
+      '/assets/images/onewheel/gallery/2.webp',
+      '/assets/images/onewheel/gallery/3.webp',
+      '/assets/images/onewheel/gallery/4.webp',
+      '/assets/images/onewheel/gallery/5.webp',
+      '/assets/images/onewheel/gallery/6.webp',
+      '/assets/images/onewheel/gallery/7.webp',
+      '/assets/images/onewheel/gallery/8.webp',
+      '/assets/images/onewheel/gallery/9.webp',
+      '/assets/images/onewheel/gallery/10.webp',
+    ]} />
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      The 30s Pint X
+    </h2>
+    <p class="text-white">
+    Armed with 30 Ampace JP30 tabless 18650s and a Thor400 32s VESC-based ESC, the first step to my build was to do the controller retrofit. I removed the stock controller from its cast aluminum housing and put the housing on a manual mill to drill and then tap blind M3 holts for mounting. I applied thermal paste, installed the VESC, harnessed it with some simple adapter PCBs and headlights, and with a small amount of modification the stock lid could be reinstalled.
+    </p>
+    <br />
+    <Image src={thor} alt="Thor400 VESC controller installed" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+    This was relatively straightforward, but the battery was a much bigger challenge. I removed the stock battery and measured the cell carriers so I could match its geometry. Using the sheet metal modeller I routed nickel strips for the series connections and balance leads.
+    </p>
+    
+    <Image src={batteryCad} alt="Battery CAD" class="w-full border border-black" densities={[1, 2, 3]} />
+    <p class="text-white">
+    Coincedentally, MITERS, MIT's student run makerspace, had just acquired a new Kweld spot welder, but it needed a power supply. I took a couple hours to build a supply for it out of 5 2600F super capacitors in series, which could provide the 12V and high current pulses needed to weld the battery.
+    </p>
+    
+    <br />
+    <Image src={kweld} alt="Kweld spot welder power supply" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br />
+    <p class="text-white">
+    Building the new battery started with printing the cell carriers before assembling cells, cutting and welding strips, and harnessing.
+    </p>
+    <br>
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Building the Battery
+    </h3>
+    <Carousel client:load images={[
+      '/assets/images/onewheel/gallery2/IMG_3650.webp',
+      '/assets/images/onewheel/gallery2/IMG_3651.webp',
+      '/assets/images/onewheel/gallery2/IMG_3720.webp',
+      '/assets/images/onewheel/gallery2/IMG_3724.webp',
+      '/assets/images/onewheel/gallery2/IMG_3726.webp',
+      '/assets/images/onewheel/gallery2/IMG_3729.webp',
+      '/assets/images/onewheel/gallery2/IMG_3732.webp',
+      '/assets/images/onewheel/gallery2/IMG_3737.webp',
+    ]} />
+    <br />
+    <p class="text-white">
+    I installed the battery and a 30s BMS from IndySpeedControl into the stock battery box, which required me to clean up the wiring quite a bit. I ended up breaking my Maghandle in the process of reassembling the board, so I quickly 3D scanned it and then re-modelled and SLS printed a new one.
+    </p>
+    <br />
+    <div class="progression-strip">
+      <div class="progression-step">
+        <Image src={handle1} alt="Handle step 1" densities={[1, 2, 3]} />
+        <span>1</span>
+      </div>
+      <div class="progression-step progression-step--slight">
+        <Image src={handle2} alt="Handle step 2" densities={[1, 2, 3]} />
+        <span>2</span>
+      </div>
+      <div class="progression-step">
+        <Image src={handle3} alt="Handle step 3" densities={[1, 2, 3]} />
+        <span>3</span>
+      </div>
+      <div class="progression-step progression-step--contain">
+        <Image src={handle4} alt="Handle step 4" densities={[1, 2, 3]} />
+        <span>4</span>
+      </div>
+    </div>
+    <br>
+    <Image src={handle5} alt="Handle step 5" class="w-full border border-black" densities={[1, 2, 3]} />
+    <br>
+    <h2 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Conclusion
+    </h2>
+    <p class="text-white">
+    Configuring the VESC was a bit of a learning curve, but after some trial and error I got the settings dialed in. I've been able to achieve a top speed of 45MPH, and it has way more torque than the stock board, as the pack can deliver almost 14KW. The VESC gives me much more control over the riding experience, as I can customize the stiffness, pushback, and other parameters. <br><br>In March 2026, I experienced a BMS failure in which it failed short. My fuse blew, protecting the Thor400, but as of today, I am still deciding how best to proceed with this board. Luckily, even more powerful tabless cells have become available since I built the board, so when I do begin building a new battery it will be even more powerful than the current one.
+    </p>
     <BackButton />
   </div>
 </Layout>
+
+<style>
+  .progression-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.375rem;
+  }
+
+  @media (max-width: 600px) {
+    .progression-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .progression-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .progression-step :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid black;
+  }
+
+  .progression-step--slight :global(img) {
+    transform: scale(0.82);
+  }
+
+  .progression-step--contain :global(img) {
+    object-fit: contain;
+  }
+
+  .progression-step span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .bullet-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+</style>

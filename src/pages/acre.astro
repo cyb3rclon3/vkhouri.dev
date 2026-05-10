@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/BackButton.astro";
 import Acre from "../components/acre/Acre.astro";
+import Carousel from "../components/Carousel";
 ---
 
 <Layout title="Acre Robotics | Vaughn Khouri">
@@ -24,11 +25,21 @@ import Acre from "../components/acre/Acre.astro";
     </h2>
 
     <p class="text-white">
-      In summer 2025, I spent 6 weeks at a seed-stage startup in the South Bay that aimed to bring the cost of autonomous tractors down. In less than 30 days, I worked with a small team to turn a completely mechanical Case 75A tractor into a testing platform for our software stack. Here's that story.
+      In summer 2025, I spent 6 weeks at a seed-stage startup in the South Bay that aimed to bring the cost of autonomous tractors down. In less than 30 days, I worked with a small team to turn a completely mechanical Case 75A tractor into a testing platform for our software stack. I installed stereo cameras, a steering sensor, actuators on manual controls, and reverse-engineered the tractor's ECU and CAN bus to get data from the engine and send commands to the throttle. We packed the tractor up and trailered it to Kansas where it underwent many weeks of testing in a variety of conditions.
       <br /><br />
-      Coming soon...
+      Acre Robotics (now Actor Labs) has since pivoted to general heavy machinery autonomy. Check out their website <a href="https://labs.actor/" target="_blank" rel="noopener noreferrer" class="underline">here</a>.
     </p>
 
+    <br />
+    <h3 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-3xl text-white">
+      Gallery
+    </h3>
+    <Carousel client:load images={[
+      '/assets/images/acre/gallery/IMG_1714.webp',
+      '/assets/images/acre/gallery/IMG_1729.webp',
+      '/assets/images/acre/gallery/IMG_1731.webp',
+    ]} />
+    <br />
     <BackButton />
   </div>
 </Layout>
